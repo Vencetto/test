@@ -1,3 +1,14 @@
+
+@font-face {
+  font-family: 'Zen Loop';
+  src: local('Zen Loop'), url(./assets/fonts/ZenLoop-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: local('Open Sans'), url(./assets/fonts/OpenSans-Regular.ttf);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

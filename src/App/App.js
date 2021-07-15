@@ -1,12 +1,16 @@
-import './App.cs.js';
-import * as SC from './App.cs';
+import React from 'react';
+import {
+    Switch,
+    Route,
+} from "react-router-dom";
+import MainPage from '../MainPage/MainPage';
 
-function App() {
-  return (
-    <SC.AppContainer>
-      
-    </SC.AppContainer>
-  );
+export default function App() {
+    return (
+        <Switch>
+            <Route path="/home">
+                <MainPage />
+            </Route>
+        </Switch>
+    );
 }
-
-export default App;
