@@ -1,30 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { RaceItem } from '../RaceItem/RaceItem.js';
 import * as SC from './MainPage.sc';
 
 const SERVER_URL = 'ws://testapi.marit.expert:3004'; 
-// const arr = [ { id:1, name:"Frodo", race:"Hobbit" },
-//             { id:2, name:"Aragorn", race:"Human" },
-//             { id:3, name:"Gimli", race:"Dworf" },
-//             { id:4, name:"Legolas", race:"Elf" }
-//           ]
 
 function MainPage() {
     const socket = new WebSocket(SERVER_URL);
-    let arr = [];
+    const [chars, setChars] = useState([]);
 
     socket.onopen = function() {
         socket.send({cmd:"get_list"});
-        socket.onmessage = (message) => { arr = message.data };
+        socket.onmessage = (message) => {
+            setChars(Array.from(JSON.parse(message.data)));
+        };
     }
-
-    useEffect(() => console.log('here'), [arr]);
 
     return (
         <SC.MainContainer>
             <SC.ColContainer>
                 {
-                    arr.map(el => <RaceItem character={el} id={el.id} />)
+                    chars.map(el => <RaceItem character={el} key={el.id} />)
                 }
             </SC.ColContainer>
         </SC.MainContainer>
